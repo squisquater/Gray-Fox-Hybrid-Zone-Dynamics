@@ -8,7 +8,7 @@ Characterizing the demographic history and dynamics of secondary contact between
 * Calculate read depth across samples [ReadDepth.sh]
 
 ## SNP Calling
-#### Genotype Likelihoods (angsd)
+* Genotype Likelihoods (angsd)
 
 ## Demographic Reconstruction
 ### Divergence Time Estimation
