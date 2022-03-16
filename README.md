@@ -1,5 +1,5 @@
 # Gray-Fox-Hybrid-Zone-Dynamics
-Characterizing the demographic history and dynamics of secondary contact between eastern and western gray fox lineages using whole genome sequencing
+Characterizing the dynamics of secondary contact between eastern and western gray fox lineages using whole genome sequencing
 
 ## **Data Processing**
 * Trim reads [Trim.sh]
