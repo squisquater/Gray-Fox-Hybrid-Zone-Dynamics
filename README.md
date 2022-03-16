@@ -10,12 +10,12 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 ## SNP Calling
 * Genotype Likelihoods (angsd)
 
-## Demographic Reconstruction
-### Divergence Time Estimation
-### Changes in Effective Population Size
-
 ## Secondary Contact
+
 ### Local Ancestry Inference and Admixture Timing
+
+### Geographic Cline Analaysis
+
 ### Selection Across the Hybrid Zone
 
 
