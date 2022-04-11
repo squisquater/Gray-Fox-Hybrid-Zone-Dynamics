@@ -22,6 +22,10 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 #### Run AHMM
 
 ### Geographic Cline Analaysis
+#### Run cline models for: 
+* all combined data
+* western gray fox only
+* eastern gray fox only
 
 ### Selection Across the Hybrid Zone
 
