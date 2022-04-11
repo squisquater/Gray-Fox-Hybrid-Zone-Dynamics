@@ -23,9 +23,9 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 
 ### Geographic Cline Analaysis
 #### Run cline models for: 
-* all combined data
-* western gray fox only
-* eastern gray fox only
+* All combined data [HZAR_ALLData.R]
+* Western gray fox only [HZAR_West.R]
+* Eastern gray fox only [HZAR_East.R]
 
 ### Selection Across the Hybrid Zone
 
