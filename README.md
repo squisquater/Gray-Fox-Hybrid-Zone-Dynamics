@@ -21,6 +21,8 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 #### Generate read counts (Maj/Min) for each admixed individual
 #### Run AHMM
 
+see /group/ctbrowngrp2/sophiepq/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles_new/AIM0.6/IndividualAnalyses/LD_50kb for input and output files
+
 ### Geographic Cline Analaysis
 #### Run cline models for: 
 * All combined data [HZAR_ALLData.R]
