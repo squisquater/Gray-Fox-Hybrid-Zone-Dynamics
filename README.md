@@ -22,10 +22,11 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 **STEP3:** Run PSMC for all files using Wang et al (2020) parameters [[runPSMC.sh]]() \
 **STEP4:** Bootstrapping 
 > Split fasta files for bootstrapping [[bootstrap_split.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/bootstrap_split.sh) \
-> Run bootstrapping [[bootstrap.sh]]() \
+> Run bootstrapping [[bootstrap.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/bootstrap.sh) 
 
-**STEP5:** Plot PSMC trajectories [[plotPSMC.sh]]() 
- 
+**STEP5:** Merge all .psmc files together [[mergePSMC.sh]]() \
+**STEP6:** Plot PSMC trajectories [[plotPSMC.sh]]()
+
 ### Stairway Plot Analysis
 ### Tajima's D and Fu's F
 
