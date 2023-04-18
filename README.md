@@ -24,7 +24,7 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 > Split fasta files for bootstrapping [[bootstrap_split.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/bootstrap_split.sh) \
 > Run bootstrapping [[bootstrap.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/bootstrap.sh) 
 
-**STEP5:** Merge all .psmc files together [[mergePSMC.sh]]() \
+**STEP5:** Merge all .psmc files together [[mergePSMC.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/tree/main/Demographic-History/PSMC) \
 **STEP6:** Plot PSMC trajectories [[plotPSMC.sh]]()
 
 ### Stairway Plot Analysis
