@@ -1,7 +1,7 @@
 # Gray-Fox-Hybrid-Zone-Dynamics
-Characterizing the dynamics of secondary contact between eastern and western gray fox lineages using whole genome sequencing
+Characterizing the dynamics of secondary contact between eastern and western gray fox lineages using whole genome and reduced-representation sequencing
 
-## **Data Processing**
+## **Data Processing WGS**
 * Trim reads [Trim.sh]
 * Align to reference [Align.sh]
 * Merge (if split) and clean reads [Merge_Clean.sh]
@@ -9,6 +9,25 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 
 ## SNP Calling
 * Genotype Likelihoods (angsd)
+
+## **Data Processing GBS**
+* See Kierepka et al. 2022 
+* Details can be found in the github [repository](https://github.com/squisquater/Cryptic-Gray-Fox-Lineages-Secondary-Contact) associated with that manuscript.
+
+## Demographic History 
+### PSMC Analysis
+**STEP0:** Subset autosomes [[subset_autosomes.sh]]() \
+**STEP1:** Convert bam to fastq file [[subset_autosomes.sh]]()\
+**STEP2:** Convert fastq to psmc fasta file \
+**STEP3:** Run PSMC for all files using Wang et al (2020) parameters \
+**STEP4:** Plot PSMC trajectories
+ 
+### Stairway Plot Analysis
+### Tajima's D and Fu's F
+
+## Genetic Diversity
+### Heterozygosity
+
 
 ## Secondary Contact
 
@@ -29,6 +48,6 @@ see /group/ctbrowngrp2/sophiepq/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles_new/
 * Western gray fox only [HZAR_West.R]
 * Eastern gray fox only [HZAR_East.R]
 
-### Selection Across the Hybrid Zone
+
 
 
