@@ -19,7 +19,7 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 **STEP0:** Subset autosomes [[subset_autosomes.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/subset_autosomes.sh) \
 **STEP1:** Convert bam to fastq file [[bam2fastq.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/bam2fastq.sh) \
 **STEP2:** Convert fastq to psmc fasta file [[fastq2psmcfa.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/fastq2psmcfa.sh) \
-**STEP3:** Run PSMC for all files using Wang et al (2020) parameters \
+**STEP3:** Run PSMC for all files using Wang et al (2020) parameters [[runPSMC.sh]]() \
 **STEP4:** Plot PSMC trajectories
  
 ### Stairway Plot Analysis
