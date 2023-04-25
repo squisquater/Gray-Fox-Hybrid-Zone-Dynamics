@@ -10,3 +10,4 @@
 **STEP5:** Merge all .psmc files together [[mergePSMC.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/mergePSMC.sh) \
 **STEP6:** Plot PSMC trajectories [[plotPSMC.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/plotPSMC.sh)
 > For the PSMC plotting code, it is important to include the flag -R, which will give you the data (population size and years) to plot in ggplot2. 
+**STEP7:** Combine all the bootstrapped replicates so I can plot them together [[mergePSMCplots.sh]]()
