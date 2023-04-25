@@ -7,13 +7,6 @@
 > Split fasta files for bootstrapping [[bootstrap_split.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/bootstrap_split.sh) \
 > Run bootstrapping [[bootstrap.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/bootstrap.sh) 
 
-**STEP5:** Merge all .psmc files together [[mergePSMC.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/tree/main/Demographic-History/PSMC) \
-**STEP6:** Plot PSMC trajectories [[plotPSMC.sh]]()
-For the PSMC plotting code, it is important to include the flag -R, which will give you the data (population size and years) to plot in ggplot2. Without this flag, PSMC will just output a figure that it will make, which is hard to adjust and plot multiple individual's demographic history trajectories on.
-
-Generate a conda environment which has necessary packages to run the plot.py script.
-```
-conda create --name PSMC
-conda install -c bioconda gnuplot
-conda activate PSMC
-```
+**STEP5:** Merge all .psmc files together [[mergePSMC.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/mergePSMC.sh) \
+**STEP6:** Plot PSMC trajectories [[plotPSMC.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/plotPSMC.sh)
+> For the PSMC plotting code, it is important to include the flag -R, which will give you the data (population size and years) to plot in ggplot2. 
