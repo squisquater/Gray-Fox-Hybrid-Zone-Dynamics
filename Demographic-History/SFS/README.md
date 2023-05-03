@@ -50,4 +50,7 @@ Script: [CanVulpAncestralFasta.sh]()
 [/home/sophiepq/GrayFox/angsd/SFS/EastFullK3HC_doSaf.sh]() \
 [/home/sophiepq/GrayFox/angsd/SFS/WestFullK3HC_doSaf.sh]() \
 [/home/sophiepq/GrayFox/angsd/SFS/TexasFullK3HC_doSaf.sh]() \
-[/home/sophiepq/GrayFox/angsd/SFS/CaliforniaFullK3HC_doSaf.sh]() \
+[/home/sophiepq/GrayFox/angsd/SFS/CaliforniaFullK3HC_doSaf.sh]() 
+
+#### STEP1b: Generate a 1-D site frequency spectrum --> [1D-SFS.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/1D-SFS.sh)
+
