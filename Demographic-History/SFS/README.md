@@ -7,26 +7,29 @@ This folder contains information for generating a site frequency spectrum which 
 
 #### Several datasets
 
+--- fastsimcoal2 Dataset ---
 ##### Full K=3 Dataset High Coverage (n=182)
 *I think this one will be the best representation for the fastsimcoal modeling*
-* East All (n=69) **Bamlist:** ~/GrayFox/angsd/SFS/EastFullK3HC_bamlist.txt
-* West All (n=113) **Bamlist:** ~/GrayFox/angsd/SFS/WestFullK3HC_bamlist.txt
-  * Texas All (n=87) **Bamlist:** ~/GrayFox/angsd/SFS/TexasFullK3HC_bamlist.txt
-  * California All (n=26) **Bamlist:** ~/GrayFox/angsd/SFS/CaliforniaFullK3HC_bamlist.txt
+* East All (n=69) **Bamlist:** ~/GrayFox/angsd/SFS/EastFullK3HC_bamlist.txt **DONE**
+* West All (n=113) **Bamlist:** ~/GrayFox/angsd/SFS/WestFullK3HC_bamlist.txt **DONE**
+  * Texas All (n=87) **Bamlist:** ~/GrayFox/angsd/SFS/TexasFullK3HC_bamlist.txt **DONE**
+  * California All (n=26) **Bamlist:** ~/GrayFox/angsd/SFS/CaliforniaFullK3HC_bamlist.txt **DONE**
 
+--- StairwayplotDatasets ---
+Does the high coverage data look similar to the all coverage data for Tajima's D and Stairwayplots?
 ##### Pure Only Dataset All Coverage (n=195)
-* East All (n=81) **Bamlist:** 
-* West All (n=114) **Bamlist:** 
-  * Texas All (n=42) **Bamlist:** 
-  * California All (n=19) **Bamlist:** 
-  * N. California All (n=11) **Bamlist:**
+* East All (n=81) **Bamlist:** ~/GrayFox/angsd/SFS/EastPureAll_bamlist.txt **DONE**
+* West All (n=114) **Bamlist:** ~/GrayFox/angsd/SFS/WestPureAll_bamlist.txt **DONE**
+  * Texas All (n=42) **Bamlist:** ~/GrayFox/angsd/SFS/TexasK3PureAll_bamlist.txt **DONE**
+  * California All (n=19) **Bamlist:** ~/GrayFox/angsd/SFS/AllCaliforniaPureAll_bamlist.txt **DONE**
+  * N. California All (n=11) **Bamlist:** ~/GrayFox/angsd/SFS/N.CAPureAll_bamlist.txt **DONE**
 
 ##### Pure Only High Coverage Dataset
-* East High Coverage (n=61) **Bamlist:** ~/GrayFox/angsd/SFS/East_bamlist.txt
-* West High Coverage (n=86) **Bamlist:** 
-* Texas High Coverage (n=27) **Bamlist:** ~/GrayFox/angsd/SFS/Texas_bamlist.txt
+* East High Coverage (n=61) **Bamlist:** ~/GrayFox/angsd/SFS/East_bamlist.txt **DONE**
+* West High Coverage (n=86) **Bamlist:** ~/GrayFox/angsd/SFS/West_bamlist.txt **DONE**
+* Texas High Coverage (n=27) **Bamlist:** ~/GrayFox/angsd/SFS/Texas_bamlist.txt **DONE**
 * California High Coverage (n=13) **Bamlist:** ~/GrayFox/angsd/SFS/CA_merged_bamlist.txt
-* N. California High Coverage (n=5) **Bamlist:** ~/GrayFox/angsd/SFS/N.CA_bamlist.txt
+* N. California High Coverage (n=5) **Bamlist:** ~/GrayFox/angsd/SFS/N.CA_bamlist.txt **DONE**
 
 
 ##### High Coverage K2 Conservative Dataset
