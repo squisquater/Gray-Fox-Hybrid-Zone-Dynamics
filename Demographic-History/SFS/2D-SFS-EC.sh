@@ -17,4 +17,4 @@ cd /home/sophiepq/GrayFox/angsd/SFS
 POP0=EastFullK3HC #n=69 > 138 gene copies
 POP1=CaliforniaFullK3HC #n=26 > 52 gene copies
 
-realSFS ${POP0}.saf.idx ${POP1}.saf.idx > 2D-SFS-ET.sfs
+realSFS ${POP0}.saf.idx ${POP1}.saf.idx > 2D-SFS-EC.sfs
