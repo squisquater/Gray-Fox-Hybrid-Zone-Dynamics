@@ -18,8 +18,8 @@ ANC=/home/sophiepq/GrayFox/angsd/SFS/AncestralState/CanVulpAnc.fa
 WORKDIR=/home/sophiepq/GrayFox/angsd/SFS/
 OUT=${POP}
 BAMLIST=/home/sophiepq/GrayFox/angsd/SFS/${POP}_bamlist.txt
-MIN_DEPTH=483 # [0.5 * Pop Global Mean]
-MAX_DEPTH=2415 # [2.5 * Pop Global Mean]
+MIN_DEPTH=1063 # [0.5 * Pop Global Mean]
+MAX_DEPTH=5313 # [2.5 * Pop Global Mean]
 MIN_IND=10
 
 # set filters
