@@ -63,6 +63,178 @@ write.table(SFSmatrixETpure.byrow, file = "sfsETpure_jointDAFpop1_0.obs", sep="\
 #"1 observation" to the first line
 #and added a tab indentation to the column header line (line2)
 ```
+## Run Fastsimcoal2 Models
+
+
+### ET Pure - no migration
+sfsETpure-nomig_jointDAFpop1_0.obs
+sfsETpure-nomig.tpl
+```
+//Parameters for the coalescence simulation program : simcoal.exe
+2 samples to simulate :
+//Population effective sizes (number of genes)
+NPOP1
+NPOP2
+//Samples sizes and samples age
+122
+54
+//Growth rates: negative growth implies population expansion
+0
+0
+//Number of migration matrices : 0 implies no migration between demes
+0
+//historical event: time, source, sink, migrants, new deme size, growth rate, migr mat index
+1 historical event
+TDIV 0 1 1 RESIZE 0 1
+//Number of independent loci [chromosome]
+1 0
+//Per chromosome: Number of contiguous linkage Block: a block is a set of contiguous loci
+1
+//per Block:data type, number of loci, per gen recomb and mut rates
+FREQ 1 0 4.5e-9 OUTEXP
+```
+
+sfsETpure-nomig.est
+```
+// Priors and rules file
+// *********************
+
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max
+//all N are in number of haploid individuals
+1  ANCSIZE     unif     100  5e5   output
+1  NPOP1       unif     100  5e5   output
+1  NPOP2       unif     100  5e5   output
+0  N1M21       logunif  1e-2 20       hide
+0  N2M12       logunif  1e-2 20       hide
+1  TDIV        unif     1000   1e6   output
+
+[RULES]
+
+[COMPLEX PARAMETERS]
+0  RESIZE = ANCSIZE/NPOP2     hide
+```
+### ET Pure - constant migration
+sfsETpure-constantmig_jointDAFpop1_0.obs
+sfsETpure-constantmig.tpl
+```
+//Parameters for the coalescence simulation program : simcoal.exe
+2 samples to simulate :
+//Population effective sizes (number of genes)
+NPOP1
+NPOP2
+//Samples sizes and samples age
+122
+54
+//Growth rates: negative growth implies population expansion
+0
+0
+//Number of migration matrices : 0 implies no migration between demes
+2
+//Migration matrix 0
+0 MIG21
+MIG12 0
+//Migration matrix 1
+0 0
+0 0
+//historical event: time, source, sink, migrants, new deme size, growth rate, migr mat index
+1 historical event
+TDIV 0 1 1 RESIZE 0 1
+//Number of independent loci [chromosome]
+1 0
+//Per chromosome: Number of contiguous linkage Block: a block is a set of contiguous loci
+1
+//per Block:data type, number of loci, per gen recomb and mut rates
+FREQ 1 0 4.5e-9 OUTEXP
+```
+
+sfsETpure-constantmig.est
+```
+// Priors and rules file
+// *********************
+
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max
+//all N are in number of haploid individuals
+1  ANCSIZE     unif     100  5e5   output
+1  NPOP1       unif     100  5e5   output
+1  NPOP2       unif     100  5e5   output
+0  N1M21       logunif  1e-2 20       hide
+0  N2M12       logunif  1e-2 20       hide
+1  TDIV        unif     1000   1e6   output
+
+[RULES]
+
+[COMPLEX PARAMETERS]
+0  RESIZE = ANCSIZE/NPOP2     hide
+0  MIG12  = N1M21/NPOP1       output
+0  MIG21  = N2M12/NPOP2       output
+```
+### ET Pure - recent gene flow
+sfsETpure-migstop_jointDAFpop1_0.obs
+sfsETpure-migstop.tpl
+```
+//Parameters for the coalescence simulation program : simcoal.exe
+2 samples to simulate :
+//Population effective sizes (number of genes)
+NPOP1
+NPOP2
+//Samples sizes and samples age
+122
+54
+//Growth rates: negative growth implies population expansion
+0
+0
+//Number of migration matrices : 0 implies no migration between demes
+2
+//Migration matrix 0
+0 MIG21
+MIG12 0
+//Migration matrix 1
+0 0
+0 0
+//historical event: time, source, sink, migrants, new deme size, growth rate, migr mat index
+1 historical event
+TMIG 0 0 0 1 0 1
+TDIV 0 1 1 RESIZE 0 1
+//Number of independent loci [chromosome]
+1 0
+//Per chromosome: Number of contiguous linkage Block: a block is a set of contiguous loci
+1
+//per Block:data type, number of loci, per gen recomb and mut rates
+FREQ 1 0 4.5e-9 OUTEXP
+```
+
+sfsETpure-migstop.est
+```
+// Priors and rules file
+// *********************
+
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max
+//all N are in number of haploid individuals
+1  ANCSIZE     unif     100  5e5   output
+1  NPOP1       unif     100  5e5   output
+1  NPOP2       unif     100  5e5   output
+0  N1M21       logunif  1e-2 20       hide
+0  N2M12       logunif  1e-2 20       hide
+1  TDIV        unif     1000   1e6   output
+1  TMIG        unif     10   1e6   output       
+
+[RULES]
+TDIV>TMIG
+
+[COMPLEX PARAMETERS]
+0  RESIZE = ANCSIZE/NPOP2     hide
+0  MIG12  = N1M21/NPOP1       output
+0  MIG21  = N2M12/NPOP2       output
+```
+
+
+
+
+
+
 
 ##### IGNORE BELOW FOR THE MOMENT 
 #### Several Other Datasets That Could be Used
