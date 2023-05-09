@@ -23,16 +23,18 @@ Script: [CanVulpAncestralFasta.sh]()
 #### STEP1a: Estimate the site allele frequency likelihood
 *Note: If you don't have the ancestral state, you can instead estimate the folded SFS. This is done by supplying the -anc with the reference genome and applying -fold 1 to realSFS. (aka do not supply a -ref)*
 
-[/home/sophiepq/GrayFox/angsd/SFS/EastFullK3HC_doSaf.sh]() \
-[/home/sophiepq/GrayFox/angsd/SFS/TexasFullK3HC_doSaf.sh]() \
-[/home/sophiepq/GrayFox/angsd/SFS/EastPureAll_doSaf.sh]() \
-[/home/sophiepq/GrayFox/angsd/SFS/TexasK3PureAll_doSaf.sh]()
+[/home/sophiepq/GrayFox/angsd/SFS/EastFullK3HC_doSaf.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/EastFullK3HC_doSaf.sh) \
+[/home/sophiepq/GrayFox/angsd/SFS/TexasFullK3HC_doSaf.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/TexasFullK3HC_doSaf.sh) \
+[/home/sophiepq/GrayFox/angsd/SFS/EastPureK3HC_doSaf.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/EastPureK3HC_doSaf.sh) \
+[/home/sophiepq/GrayFox/angsd/SFS/TexasPureK3HC_doSaf.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/TexasPureK3HC_doSaf.sh)
 
 #### STEP1b: Generate a 1-D site frequency spectrum --> [1D-SFS.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/1D-SFS.sh)
 
 ## Generate 2-D Site FrequencySpectrum 
-* [2D-SFS-ET.sh]()
+* [2D-SFS-ET-FullK3HC.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/2D-SFS-ET-FullK3HC.sh)
 * [2D-SFS-ET-PureK3HC.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/2D-SFS-ET-PureK3HC.sh)
+
+
 
 
 ##### IGNORE BELOW FOR THE MOMENT 
