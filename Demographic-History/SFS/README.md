@@ -34,8 +34,22 @@ Script: [CanVulpAncestralFasta.sh]()
 * [2D-SFS-ET-FullK3HC.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/2D-SFS-ET-FullK3HC.sh)
 * [2D-SFS-ET-PureK3HC.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/2D-SFS-ET-PureK3HC.sh)
 
+Need to run some brief R code to convert these into 2D matrices.
 
+```
+sfsETpure<-scan("2D-SFS-ET-PureK3HC.sfs") #n1=61 n2=27
+nEpure=61 
+nTpure=27
+SFSmatrixETpure.byrow <- matrix(sfsETpure,nrow=((2*nEpure)+1),ncol=((2*nTpure)+1), byrow=T)
+SFSmatrixETpure.byrow <- round(SFSmatrixETpure.byrow,0)
+rownames(SFSmatrixETpure.byrow) <- rownames(SFSmatrixETpure.byrow, do.NULL = FALSE, prefix = "d_")
+colnames(SFSmatrixETpure.byrow) <- colnames(SFSmatrixETpure.byrow, do.NULL = FALSE, prefix = "d_")
+write.table(SFSmatrixETpure.byrow, file = "sfsETpure_jointDAFpop1_0.obs", sep="\t", row.names=T, col.names=T, quote=F)
 
+#Note I still needed to make a couple manual tweaks to this input file. I added 
+#"1 observation" to the first line
+#and added a tab indentation to the column header line (line2)
+```
 
 ##### IGNORE BELOW FOR THE MOMENT 
 #### Several Other Datasets That Could be Used
