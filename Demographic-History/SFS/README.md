@@ -69,6 +69,7 @@ Script: [CanVulpAncestralFasta.sh]()
 * [2D-SFS-ET.sh]()
 * [2D-SFS-EC.sh]()
 * [2D-SFS-CT.sh]()
+* [2D-SFS-ET-PureK3HC.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/2D-SFS-ET-PureK3HC.sh)
 
 ## Generate 3-D Site FrequencySpectrum 
 * [3D-SFS-ETC.sh]()
