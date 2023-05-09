@@ -37,13 +37,26 @@ Script: [CanVulpAncestralFasta.sh]()
 Need to run some brief R code to convert these into 2D matrices.
 
 ```
-sfsETpure<-scan("2D-SFS-ET-PureK3HC.sfs") #n1=61 n2=27
+sfsETpure<-scan("2D-SFS-ET-PureK3HC.sfs")
+sfsETfull<-scan("2D-SFS-ET-FullK3HC.sfs")
+
+nEfull=69
+nTfull=87
 nEpure=61 
 nTpure=27
+
+SFSmatrixETfull.byrow <- matrix(sfsETfull,nrow=((2*nEfull)+1),ncol=((2*nTfull)+1), byrow=T)
 SFSmatrixETpure.byrow <- matrix(sfsETpure,nrow=((2*nEpure)+1),ncol=((2*nTpure)+1), byrow=T)
+
+SFSmatrixETfull.byrow <- round(SFSmatrixETfull.byrow,0)
 SFSmatrixETpure.byrow <- round(SFSmatrixETpure.byrow,0)
+
+rownames(SFSmatrixETfull.byrow) <- rownames(SFSmatrixETfull.byrow, do.NULL = FALSE, prefix = "d_")
+colnames(SFSmatrixETfull.byrow) <- colnames(SFSmatrixETfull.byrow, do.NULL = FALSE, prefix = "d_")
 rownames(SFSmatrixETpure.byrow) <- rownames(SFSmatrixETpure.byrow, do.NULL = FALSE, prefix = "d_")
 colnames(SFSmatrixETpure.byrow) <- colnames(SFSmatrixETpure.byrow, do.NULL = FALSE, prefix = "d_")
+
+write.table(SFSmatrixETfull.byrow, file = "sfsETfull_jointDAFpop1_0.obs", sep="\t", row.names=T, col.names=T, quote=F)
 write.table(SFSmatrixETpure.byrow, file = "sfsETpure_jointDAFpop1_0.obs", sep="\t", row.names=T, col.names=T, quote=F)
 
 #Note I still needed to make a couple manual tweaks to this input file. I added 
