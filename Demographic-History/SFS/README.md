@@ -4,8 +4,40 @@ This folder contains information for generating a site frequency spectrum which 
 * Heterozygosity
 
 #### Target Populations Include:
+##### Full K=3 Dataset High Coverage
+* East All (n=69) **Bamlist:** ~/GrayFox/angsd/SFS/EastFullK3HC_bamlist.txt **DONE**
+* Texas All (n=87) **Bamlist:** ~/GrayFox/angsd/SFS/TexasFullK3HC_bamlist.txt **DONE**
 
-#### Several datasets
+##### Pure Only High Coverage Dataset
+* East High Coverage (n=61) **Bamlist:** ~/GrayFox/angsd/SFS/East_bamlist.txt **DONE**
+* Texas High Coverage (n=27) **Bamlist:** ~/GrayFox/angsd/SFS/Texas_bamlist.txt **DONE**
+
+### STEP00: Calculate Depth for all samples --> [getdepths.sh]()
+/home/sophiepq/GrayFox/angsd/SFS/HeterozygosityCalcs/getdepths.sh
+
+### STEP0: Generate an ancestral fasta file to generate an unfolded SFS.
+Include: [golden jackal + coyote + gray wolf] & [red fox + kit fox + arctic fox] \
+Script: [CanVulpAncestralFasta.sh]()
+
+### STEP1: Find a ‘global estimate’ of the SFS
+#### STEP1a: Estimate the site allele frequency likelihood
+*Note: If you don't have the ancestral state, you can instead estimate the folded SFS. This is done by supplying the -anc with the reference genome and applying -fold 1 to realSFS. (aka do not supply a -ref)*
+
+[/home/sophiepq/GrayFox/angsd/SFS/EastFullK3HC_doSaf.sh]() **running** \
+[/home/sophiepq/GrayFox/angsd/SFS/TexasFullK3HC_doSaf.sh]() **running** \
+
+[/home/sophiepq/GrayFox/angsd/SFS/EastPureAll_doSaf.sh]() **to run** \
+[/home/sophiepq/GrayFox/angsd/SFS/TexasK3PureAll_doSaf.sh]() **to run** \
+
+#### STEP1b: Generate a 1-D site frequency spectrum --> [1D-SFS.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/1D-SFS.sh)
+
+## Generate 2-D Site FrequencySpectrum 
+* [2D-SFS-ET.sh]()
+* [2D-SFS-ET-PureK3HC.sh](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/SFS/2D-SFS-ET-PureK3HC.sh)
+
+
+##### IGNORE BELOW FOR THE MOMENT 
+#### Several Other Datasets That Could be Used
 
 --- fastsimcoal2 Dataset ---
 ##### Full K=3 Dataset High Coverage (n=182)
