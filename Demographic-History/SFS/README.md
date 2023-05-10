@@ -194,7 +194,7 @@ MIG12 0
 0 0
 0 0
 //historical event: time, source, sink, migrants, new deme size, growth rate, migr mat index
-1 historical event
+2 historical event
 TMIG 0 0 0 1 0 1
 TDIV 0 1 1 RESIZE 0 1
 //Number of independent loci [chromosome]
@@ -231,9 +231,118 @@ TDIV>TMIG
 ```
 
 
+## Run fastsimcoal for all analyses
+*sfsETpure-nomig.sh*
+```
+#!/usr/bin/env bash
+#SBATCH --job-name=sfsETpure-nomig
+#SBATCH --array=1-100%33
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH --time 10:00:00
+#SBATCH --mem=2GB
+#SBATCH -o /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/sfsETpure-nomig/sfsETpure-nomig_%A_%a.out
+#SBATCH -e /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/sfsETpure-nomig/sfsETpure-nomig_%A_%a.out
+#SBATCH -p high
+
+echo "My SLURM_ARRAY_TASK_ID: " $SLURM_ARRAY_TASK_ID
+STARTTIME=$(date +"%s")
+
+MODEL=sfsETpure-nomig
+RUN=$(sed "${SLURM_ARRAY_TASK_ID}q;d" /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/sfsETpure-nomig/100runs.txt | cut -f1)
+
+echo "running run $RUN of the fastsimcoal analysis on $MODEL model"
+
+cd /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/$MODEL
+mkdir Run$RUN
+cp ./$MODEL.tpl ./Run$RUN
+cp ./$MODEL.est ./Run$RUN
+cp ./${MODEL}_jointDAFpop1_0.obs ./Run$RUN
+cd ./Run$RUN
+
+~/bin/fsc26_linux64/fsc26 -t $MODEL.tpl -n200000 -d -e $MODEL.est -M -L 75 -c6 -q
+
+ENDTIME=$(date +%s)
+TIMESPEND=$(($ENDTIME - $STARTTIME))
+((sec=TIMESPEND%60,TIMESPEND/=60, min=TIMESPEND%60, hrs=TIMESPEND/60))
+timestamp=$(printf "%d:%02d:%02d" $hrs $min $sec)
+echo "Took $timestamp hours:minutes:seconds to complete..."
+```
 
 
+*sfsETpure-constantmig.sh*
+```
+#!/usr/bin/env bash
+#SBATCH --job-name=sfsETpure-constantmig
+#SBATCH --array=1-100%33
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH --time 20:00:00
+#SBATCH --mem=2GB
+#SBATCH -o /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/sfsETpure-constantmig/sfsETpure-constantmig_%A_%a.out
+#SBATCH -e /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/sfsETpure-constantmig/sfsETpure-constantmig_%A_%a.out
+#SBATCH -p high
 
+echo "My SLURM_ARRAY_TASK_ID: " $SLURM_ARRAY_TASK_ID
+STARTTIME=$(date +"%s")
+
+MODEL=sfsETpure-constantmig
+RUN=$(sed "${SLURM_ARRAY_TASK_ID}q;d" /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/sfsETpure-constantmig/100runs.txt | cut -f1)
+
+echo "running run $RUN of the fastsimcoal analysis on $MODEL model"
+
+cd /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/$MODEL
+mkdir Run$RUN
+cp ./$MODEL.tpl ./Run$RUN
+cp ./$MODEL.est ./Run$RUN
+cp ./${MODEL}_jointDAFpop1_0.obs ./Run$RUN
+cd ./Run$RUN
+
+~/bin/fsc26_linux64/fsc26 -t $MODEL.tpl -n200000 -d -e $MODEL.est -M -L 75 -c6 -q
+
+ENDTIME=$(date +%s)
+TIMESPEND=$(($ENDTIME - $STARTTIME))
+((sec=TIMESPEND%60,TIMESPEND/=60, min=TIMESPEND%60, hrs=TIMESPEND/60))
+timestamp=$(printf "%d:%02d:%02d" $hrs $min $sec)
+echo "Took $timestamp hours:minutes:seconds to complete..."
+```
+
+*sfsETpure-migstop.redo.sh*
+```
+#!/usr/bin/env bash
+#SBATCH --job-name=sfsETpure-migstop.redo
+#SBATCH --array=1-100%33
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH --time 20:00:00
+#SBATCH --mem=2GB
+#SBATCH -o /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/sfsETpure-migstop.redo/sfsETpure-migstop.redo_%A_%a.out
+#SBATCH -e /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/sfsETpure-migstop.redo/sfsETpure-migstop.redo_%A_%a.out
+#SBATCH -p high
+
+echo "My SLURM_ARRAY_TASK_ID: " $SLURM_ARRAY_TASK_ID
+STARTTIME=$(date +"%s")
+
+MODEL=sfsETpure-migstop.redo
+RUN=$(sed "${SLURM_ARRAY_TASK_ID}q;d" /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/sfsETpure-migstop.redo/100runs.txt | cut -f1)
+
+echo "running run $RUN of the fastsimcoal analysis on $MODEL model"
+
+cd /home/sophiepq/GrayFox/angsd/SFS/fastsimcoal/$MODEL
+mkdir Run$RUN
+cp ./$MODEL.tpl ./Run$RUN
+cp ./$MODEL.est ./Run$RUN
+cp ./${MODEL}_jointDAFpop1_0.obs ./Run$RUN
+cd ./Run$RUN
+
+~/bin/fsc26_linux64/fsc26 -t $MODEL.tpl -n200000 -d -e $MODEL.est -M -L 75 -c6 -q
+
+ENDTIME=$(date +%s)
+TIMESPEND=$(($ENDTIME - $STARTTIME))
+((sec=TIMESPEND%60,TIMESPEND/=60, min=TIMESPEND%60, hrs=TIMESPEND/60))
+timestamp=$(printf "%d:%02d:%02d" $hrs $min $sec)
+echo "Took $timestamp hours:minutes:seconds to complete..."
+```
 
 
 ##### IGNORE BELOW FOR THE MOMENT 
