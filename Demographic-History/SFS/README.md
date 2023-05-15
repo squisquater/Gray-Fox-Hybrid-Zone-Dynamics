@@ -344,6 +344,77 @@ timestamp=$(printf "%d:%02d:%02d" $hrs $min $sec)
 echo "Took $timestamp hours:minutes:seconds to complete..."
 ```
 
+## Extract the highest likelihood model from each of the 100 replicate runs
+
+To find the best run, i.e. the run with the highest likelihood, or better the smallest difference between the maximum possible likelihood (MaxObsLhood) and the obtained likelihood (MaxEstLhood), we can check the .bestlhoods files.
+
+```
+cat Run{1..91}/sfsETpure-nomig/sfsETpure-nomig.bestlhoods | grep -v MaxObsLhood | awk '{print NR,$8}' | sort -k 2
+
+cat Run{1..100}/sfsETAll-nomig/sfsETAll-nomig.bestlhoods | grep -v MaxObsLhood
+
+cat Run{1..40}/sfsETpure-nomig/sfsETpure-nomig.bestlhoods | grep -v MaxObsLhood
+
+cat Run{1..91}/${PREFIX}/${PREFIX}.bestlhoods | grep -v MaxObsLhood | awk '{print NR,$8}' | sort -k 2
+
+
+```
+
+```
+#!/bin/bash
+
+# Bash script by Joana Meier to select the best fastsimcoal run of multiple runs under the same demographic model
+# The script expects output files of different runs to be found in folders starting with run 
+
+m=-1000000000000000
+p=$1
+c=0
+best="xxxx"
+diff=0
+diffBest=0
+
+for i in run*;
+do
+ a=$(ls | grep ${p}".tpl" | sed s'/.tpl//')
+
+ # if the file is in the run directory
+ if [ -e $i/$a.bestlhoods ]
+ then
+   l=$(cat $i/$a.bestlhoods | awk '{print $(NF-1)}' | tail -1 | cut -f 1 -d ".")
+   diff=$(cat $i/$a.bestlhoods | awk '{print $NF-$(NF-1)}' | tail -1 | cut -f 1 -d ".")
+   ((c++))
+ else
+   # if the file is in a subdirectory
+   if [ -e $i/$a/$a.bestlhoods ]
+   then
+     l=$(cat $i/$a/$a.bestlhoods | awk '{print $(NF-1)}' | tail -1 | cut -f 1 -d ".")
+     diff=$(cat $i/$a/$a.bestlhoods | awk '{print $NF-$(NF-1)}' | tail -1 | cut -f 1 -d ".")
+     ((c++))
+   else
+     echo "no .bestlhoods file found in "$i
+   fi
+
+ fi
+
+
+ if [ $l -gt $m ]
+ then
+   m=$l; x=$i; best=$i;
+   diffBest=$diff
+ fi
+done
+
+if [ -z ${x+1} ]
+then echo "Error: No run with lik>-1000000000000000"
+else mkdir bestrun
+cp $x/* ./bestrun/
+cp $x/$a/* ./bestrun/
+fi
+
+echo -e "\n"$c" bestlhoods files found, "$best" with "$diffBest" Lhood diff fits best."
+```
+
+
 
 ##### IGNORE BELOW FOR THE MOMENT 
 #### Several Other Datasets That Could be Used
