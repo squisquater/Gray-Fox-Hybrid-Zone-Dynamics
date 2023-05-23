@@ -14,6 +14,15 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 * See Kierepka et al. 2022 
 * Details can be found in the github [repository](https://github.com/squisquater/Cryptic-Gray-Fox-Lineages-Secondary-Contact) associated with that manuscript.
 
+### Local Ancestry Inference and Admixture Timing
+#### Identify Ancestry Informative Markers
+#### Remove Background LD
+* Estimate distance based thinning parameter using reference population LD patterns [East_LD.sh] & [West_LD.sh]. Generate LD Decay Curves [LD_Curve.sh]
+* Thin AIMs 
+#### Convert physcal position (bp) to genetic position (cM)
+#### Generate read counts (Maj/Min) for each admixed individual
+#### Run AHMM
+
 ## Demographic History 
 ### PSMC Analysis
 **STEP0:** Subset autosomes [[subset_autosomes.sh]](https://github.com/squisquater/Gray-Fox-Hybrid-Zone-Dynamics/blob/main/Demographic-History/PSMC/subset_autosomes.sh) \
@@ -36,17 +45,6 @@ Characterizing the dynamics of secondary contact between eastern and western gra
 ## Ecological Niche Modeling
 
 ## Secondary Contact
-
-### Local Ancestry Inference and Admixture Timing
-#### Identify Ancestry Informative Markers
-#### Remove Background LD
-* Estimate distance based thinning parameter using reference population LD patterns [East_LD.sh] & [West_LD.sh]. Generate LD Decay Curves [LD_Curve.sh]
-* Thin AIMs 
-#### Convert physcal position (bp) to genetic position (cM)
-#### Generate read counts (Maj/Min) for each admixed individual
-#### Run AHMM
-
-see /group/ctbrowngrp2/sophiepq/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles_new/AIM0.6/IndividualAnalyses/LD_50kb for input and output files
 
 ### Geographic Cline Analaysis
 #### Run cline models for: 
