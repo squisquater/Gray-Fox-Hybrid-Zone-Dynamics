@@ -250,7 +250,7 @@ echo "done getting allele frequencies!"
 # (I pre-computed BAQ scores and replaced quality with minimum of BAQ/base quality,
 # so this is equivalend to -baq 2 option here)
 ```
-***3. Generate Ancestry Informative Markers***
+**3. Generate Ancestry Informative Markers** \
 *In R*
 ```
 library('dplyr')
@@ -313,7 +313,7 @@ Rscript --vanilla --slave ~/bin/ngsTools/ngsLD/scripts/fit_LDdecay.R --ld_files 
 ```
 where *allchr_EastWest_0.001_list.txt* is a .txt file that has a list of the two LD datasets (.id files with filepaths) you generated above
 
- **2. Thin Sites Based on 50kb Threshold**
+ **2. Thin Sites Based on 525kb, 50kb, 75kb and 100kb Threshold**
  ```
  library(tidyverse)
 
@@ -353,11 +353,111 @@ for (i in 1:length(chr)){
       write.table(newlittlefile, paste0("AIM",AIM,"_",CHR,"_summary.txt"), sep="\t", quote = FALSE, col.names = TRUE)
 }
 ```
+**3. Generate read counts of major and minor allele for each admixed individual**
+You can do this for you AIM/thinned specific dataset but in order to minimize the number of jobs/output files I would generate with my varied AIM/thinning threshold approach, I am just going to do this for the entire 19.7million SNPs and then merge them to the different datasets based on overlapping loci from AIM specific datasets downstream. 
+```
+#!/bin/bash -l
+#SBATCH --job-name=AdmixedFox_AIM0.5_MajMinCounts
+#SBATCH --array=1-15
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH --time 4-00:00
+#SBATCH --mem=7GB
+#SBATCH -p bmm
+#SBATCH -A ctbrowngrp
+#SBATCH -o /home/sophiepq/GrayFoxWGS/GrayFox1/slurmlogs/AdmixedFox_AIM0.5_MajMinCounts.out
+#SBATCH -e /home/sophiepq/GrayFoxWGS/GrayFox1/slurmlogs/AdmixedFox_AIM0.5_MajMinCounts.err
 
+FOX_ID=$(sed "${SLURM_ARRAY_TASK_ID}q;d" ~/GrayFoxWGS/GrayFox1/align/merged/RGreplaced/dupmarked/cleaned/Admixed_Fox_IDs_15Ind.txt | cut -f1)
+OUTDIR=/home/sophiepq/GrayFoxWGS/GrayFox1/angsd/AIMs/AIM0.5/countsACGT
+DIR_SINGLE_BAM_LIST=/home/sophiepq/GrayFoxWGS/GrayFox1/align/merged/RGreplaced/dupmarked/cleaned/list_indiv_bams
+REF=/home/sophiepq/Reference_Genomes/canFam3_withY.fa
+SITES_FILE=/home/sophiepq/GrayFoxWGS/GrayFox1/angsd/vcf/bychr_43GFs/19.7m_Snp_Set_MajMin_ForGLs.txt
 
-#### Convert physcal position (bp) to genetic position (cM)
-#### Generate read counts (Maj/Min) for each admixed individual
-#### Run AHMM
+module load angsd
+
+echo "My SLURM_ARRAY_TASK_ID: " $SLURM_ARRAY_TASK_ID
+
+echo "counting reads supporting ACGT alleles for fox ${FOX_ID}"
+
+angsd -out ${OUTDIR}/${FOX_ID} \
+-ref $REF \
+-bam ${DIR_SINGLE_BAM_LIST}/${FOX_ID}.only.list \
+-minQ 30 -minMapQ 30 \
+-doCounts 1 -dumpCounts 3 \
+-remove_bads 1 \
+-sites ${SITES_FILE}
+
+echo "all done!"
+```
+**4. Convert the allele counts for each individual to major and minor allele accounts.**
+*Need to change the ID and rerun for each admixed individual. Or make a list of IDs and convert this into a loop.* \
+*Run in R*
+```
+library(dplyr)
+
+# arguments
+args = commandArgs(trailingOnly=TRUE)
+# Sample ID
+ID = "S19_4695"
+# DIR name for set of SNPs
+DIR = "AIM0.5"
+# SITES file prefix
+SITES_PREFIX = "19.7m_Snp_Set_MajMin_ForGLs.txt"
+# full path to directo
+path = paste0("C:/Users/Sophie/Desktop/GrayFox/WGS/AHMM/MakeInputFiles/", DIR)
+
+acgt_file = paste0(path, "/countsACGT/", ID, ".counts.gz")
+pos_file = paste0(path, "/countsACGT/", ID, ".pos.gz")
+sites_file = paste0(path, "/", SITES_PREFIX)
+output_directory = paste0(path, "/countsMajMin")
+output_file = paste0(output_directory, "/", ID, ".counts.txt")
+
+# input data
+
+#####No need to rerun this chunk between individuals#####
+##########################################################
+SNPs = read.table(sites_file,
+                  header = F, stringsAsFactors = F, sep = "\t")
+colnames(SNPs) = c("chr", "pos", "major", "minor")
+##replace 0,1,2,3 with ACGT
+SNPs$major[SNPs$major == 0] <- "A"
+SNPs$major[SNPs$major == 1] <- "C"
+SNPs$major[SNPs$major == 2] <- "G"
+SNPs$major[SNPs$major == 3] <- "T"
+SNPs$minor[SNPs$minor == 0] <- "A"
+SNPs$minor[SNPs$minor == 1] <- "C"
+SNPs$minor[SNPs$minor == 2] <- "G"
+SNPs$minor[SNPs$minor == 3] <- "T"
+##########################################################
+##########################################################
+acgt = read.table(acgt_file, stringsAsFactors = F, header = T)
+colnames(acgt) = substr(colnames(acgt), 4, 4) # make totA -> A column names
+pos = read.table(pos_file, stringsAsFactors = F, header = T)
+d = cbind(pos, acgt) %>%
+  left_join(SNPs, ., by = c("chr", "pos")) %>%
+  tidyr::gather(., "allele", "n", c("A", "C", "G", "T"))
+maj_counts = filter(d, major==allele) %>%
+  select(-allele) # get read counts for alleles matching major allele
+min_counts = filter(d, minor==allele) %>%
+  select(-allele) # get read counts for allele matching minor allele
+counts = full_join(maj_counts, min_counts,
+                   suffix = c("_major", "_minor"),
+                   by = c("chr", "pos", "major", "minor", "totDepth")) %>%
+  left_join(SNPs, ., by = c("chr", "pos", "major", "minor")) # match order of original SNPs var.sites file
+
+# make output directory if it doesn't exist
+if (!dir.exists(output_directory)) dir.create(output_directory, recursive = T) # will simply warn if directory already exists
+
+# write output file
+write.table(select(counts, c(chr, pos, n_major, n_minor)), 
+            output_file,
+            na = "0", # write NA's (no coverage) as zero counts
+            sep = "\t", row.names = F, col.names = T, quote = F) # just counts, no headers
+warnings() # print any warnings
+```
+#### Run AHMM for each individual 
+
 
 ## Demographic History 
 ### PSMC Analysis
