@@ -456,11 +456,11 @@ warnings() # print any warnings
 
 *Example of a how to parameterize a single pulse model on a single individual*
 ```
-~/bin/Ancestry_HMM/src/ancestry_hmm -i ~/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles/AHMMinput_S19_3072.txt -s ~/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles/S19_3072_samplefile.txt -a 2 0.789 0.211 -p 0 100000 0.789 -p 1 -1000 0.211 -e 1e-3 --tmin 2 --tmax 10000
+~/bin/Ancestry_HMM/src/ancestry_hmm -i ~/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles/AHMMinput_S19_3072.txt -s ~/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles/AIM_0.6_thin50_S19_2940.txt -a 2 0.979 0.021 -p 0 100000 0.979 -p 1 -1000 0.021 -e 1e-3 --tmin 2 --tmax 10000
 ```
 *Example of a how to parameterize a 2-pulse model on a single individual*
 ```
-~/bin/Ancestry_HMM/src/ancestry_hmm -i ~/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles/AHMMinput_S19_3072.txt -s ~/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles/S19_3072_samplefile.txt -a 2 0.789 0.211 -p 0 100000 0.789 -p 1 -1000 0.105 -p 1 -50 0.105 -e 1e-3 --tmin 2 --tmax 10000
+~/bin/Ancestry_HMM/src/ancestry_hmm -i ~/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles/AHMMinput_S19_3072.txt -s ~/GrayFoxWGS/GrayFox1/Ancestry_HMM/inputfiles/AIM_0.6_thin50_S19_2940.txt -a 2 0.979 0.021 -p 0 100000 0.979 -p 1 -1000 0.0105 -p 1 -50 0.0105 -e 1e-3 --tmin 2 --tmax 10000
 ```
 *You will need to update the relative pulses of ancestry to reflect the global ancestry proportion. Note this is just a prior and the mdoel will explore relative LAI and ultimately converge on a global ancestry using this info as a starting point.*
 
